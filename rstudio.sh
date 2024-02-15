@@ -5,9 +5,12 @@ main() {
     # Your code goes here
     if [ -f "/etc/fedora-release" ]; then
         # Fedora commands here
+        sudo dnf install 'dnf-command(versionlock)' -y
+        sudo dnf versionlock delete rstudio
         sudo dnf copr enable iucar/cran -y
         sudo dnf install R-CoprManager -y
         sudo dnf install https://rstudio.org/download/latest/stable/desktop/rhel9/rstudio-latest-x86_64.rpm -y
+        sudo dnf versionlock add rstudio
     else
         if [ -f "/etc/debian_version" ]; then
             # Debian-based commands here
